@@ -1,31 +1,19 @@
-const express = require('express');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const express = require("express");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
-const port = 3007;
+const port = 9020;
 
-const {
-  ORDERS_API_URL,
-  PRODUCTS_API_URL,
-} = require('./URLs');
+const { mobile_api_get_block_list } = require("./URLs");
 
-const optionsProducts = {
-  target: PRODUCTS_API_URL,
-  changeOrigin: true, 
-  logger: console,
+const optionsGetBlockList = {
+  target: mobile_api_get_block_list,
+  changeOrigin: true,
 };
 
-const optionsOrders = {
-  target: ORDERS_API_URL,
-  changeOrigin: true, 
-  logger: console,
-};
+const blockListProxy = createProxyMiddleware(optionsGetBlockList);
 
-const productsProxy = createProxyMiddleware(optionsProducts);
-const ordersProxy = createProxyMiddleware(optionsOrders);
-
-app.get('/', (req, res) => res.send('Hello Gateway API'));
-app.get('/orders', ordersProxy);
-app.get('/products', productsProxy);
+app.get("/", (req, res) => res.send("Hello Gateway API"));
+app.get("/api/mobile_api_get_block_list", blockListProxy);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

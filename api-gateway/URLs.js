@@ -1,4 +1,3 @@
 module.exports = {
-    ORDERS_API_URL: 'http://localhost:3005',
-    PRODUCTS_API_URL: 'http://localhost:3006',
-  };
+  mobile_api_get_block_list: "http://localhost:9004",
+};

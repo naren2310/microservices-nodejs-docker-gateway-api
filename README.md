@@ -1,17 +1,10 @@
 # How to run the microservices throgh API Gateway
 
-## products microservice with MySQL
+## mobile_api_get_block_list microservice with postgresql
 
 ```
-cd /products
-docker-compose up
-```
-
-## orders microservice with MongoDB
-
-```
-cd /orders
-docker-compose up
+cd mobile_api_get_block_list/
+npm run dev or npm start
 ```
 
 ## API Gateway Pattern Architecture
@@ -24,6 +17,5 @@ npm start
 ## Using API Gateway on browser
 
 ```
-http://localhost:3007/orders
-http://localhost:3007/products
+http://localhost:9004
 ```
